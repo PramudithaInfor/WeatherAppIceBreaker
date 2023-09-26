@@ -2,6 +2,13 @@ key = "842dc6dd2726d810b82c9ad75bb7b0c2";
 let result = document.getElementById("result");
 let searchBtn = document.getElementById("search-btn");
 let cityRef = document.getElementById("city");
+
+
+
+var dateEl = document.getElementById('date');
+var timeEl = document.getElementById('time');
+
+
  
 let getWeather = () => {
   let cityValue = cityRef.value;
