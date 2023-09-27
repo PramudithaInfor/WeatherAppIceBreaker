@@ -8,10 +8,17 @@ let cityRef = document.getElementById("city");
 var dateEl = document.getElementById('date');
 var timeEl = document.getElementById('time');
 
+let append = document.getElementById("search-btn")
+let removeLast = document.querySelector('.removeLast')
+let list = document.querySelector('ul')
 
  
 let getWeather = () => {
   let cityValue = cityRef.value;
+  let dateValue  = dateEl.value;
+  let timeValue  = timeEl.value;
+  
+ 
  
   if (cityValue.length == 0) {
     result.innerHTML = `<h3 class="msg">Please enter a city name</h3>`;
@@ -25,16 +32,11 @@ let getWeather = () => {
       .then((resp) => resp.json())
       //If city name is valid
       .then((data) => {
-        console.log(data);
-        console.log(data.weather[0].icon);
-        console.log(data.weather[0].main);
-        console.log(data.weather[0].description);
-        console.log(data.name);
-        console.log(data.main.temp_min);
-        console.log(data.main.temp_max);
-        result.innerHTML = `
- 
 
+
+        if(dateValue == 0 && timeValue == 0 ){
+
+          result.innerHTML = `
     <div class="result-container">
         <div>
         <h2>${data.name}</h2>
@@ -67,21 +69,73 @@ let getWeather = () => {
                     <h5 class="hum-pre">${data.main.pressure};</h5>
                 </div>
             </div>
-           
- 
-        </div>      
- 
+        </div>     
     </div>
  
-       
-       `;
-      })
+         `;
+        }
+
+        else if(dateValue == 0 && timeValue != 0){
+          alert("Please select a Date");
+        }
+
+        else if(dateValue != 0 && timeValue == 0){
+          alert("Please select a Time");
+        }
+
+        else{
+
+          function createLi () {
+            let li = document.createElement('li')
+            li.innerHTML = 
+            `
+           
+              
+                <h6>${cityValue}</h6>
+                <h7>${dateValue}</h7><h7>${timeValue}</h7>
+             
+          
+          `
+            return li
+          }
+          
+          
+          // Append
+          list.append(createLi())
+             
+          
+           
+
+        }
+
+        
+
+        })
+         
       //If city name is NOT valid
       .catch(() => {
         result.innerHTML = `<h3 class="msg">City not found</h3>`;
       });
   }
+
+
+
 };
+
+
+// Remove Last
+removeLast.addEventListener('click', e => {
+  if (list.children.length) {
+    let lastNode = list.children[list.children.length - 1]
+    console.log(lastNode)
+    list.removeChild(lastNode)
+  }
+})  
+
+
+
+
+
 searchBtn.addEventListener("click", getWeather);
 window.addEventListener("load", getWeather);
  
