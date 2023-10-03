@@ -3,12 +3,12 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link
       href=https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap
       rel="stylesheet"
     />
-    <!-- Stylesheet -->
+  
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -20,18 +20,44 @@
             type="text"
             placeholder="Enter the city.."
             id="city"
-            value="Colombo"
+            value=""
           />
           <button id="search-btn">Check</button>
         </div>
+        <div class="datetimepicker">
+          <input type="date" id="date" value="0">
+          <span></span>
+          <input type="time" id="time" value="0">
+          <span></span>
+          <select id="timeperiod" class="timeperiod">
+            <option value="Hourly">Hourly</option>
+            <option value="Daily">Daily</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
+          </select>
+          <button id="clearfld" class="clearfld">reset</button>
+        </div>
+        
         <div id="result"></div>
       </div>
     </div>
 
+
+    <div class="wrapper2">
+     
+      <div class="container2">
+        
+        <div >
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+  
+
     
-    <!-- Script -->
-    <script src="key.js"></script>
-    <script src="script.js"></script>
+<script type="module"  src="firebase.js"></script>
+<script type="module"  src="script.js"></script>
+
   </body>
 </html>
  
